@@ -1,0 +1,30 @@
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  GRADLE_USER_HOME: "$CI_PROJECT_DIR/.gradle"
+
+cache:
+  paths:
+    - .gradle/wrapper/
+    - .gradle/caches/
+
+build:
+  image: gradle:8.7-jdk17
+  stage: build
+  script:
+    - gradle build
+
+test:
+  image: gradle:8.7-jdk17
+  stage: test
+  script:
+    - gradle test
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying to server..."
+    # Додай свої команди для розгортання
