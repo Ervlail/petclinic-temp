@@ -12,13 +12,13 @@ cache:
     - .gradle/caches/
 
 build:
-  image: gradle:8.7-jdk17
+  image: gradle:8.7-jdk22
   stage: build
   script:
     - gradle build
 
 test:
-  image: gradle:8.7-jdk17
+  image: gradle:8.7-jdk22
   stage: test
   script:
     - gradle test
