@@ -1,4 +1,4 @@
-image: docker:20.10.7 #gradle:8.7-jdk17
+image: gradle:8.7-jdk17
 
 stages:
   - test
@@ -41,6 +41,7 @@ build:
 
 docker:
   stage: docker
+  image: docker:20.10.7
   services:
     - docker:dind
   script:
