@@ -9,10 +9,6 @@ stages:
 variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
   DOCKER_HOST: tcp://docker:2375
-  CI_REGISTRY_IMAGE: $CI_REGISTRY_IMAGE
-  CI_REGISTRY_USER: $CI_REGISTRY_USER
-  CI_REGISTRY_PASSWORD: $CI_REGISTRY_PASSWORD
-  CI_REGISTRY: $CI_REGISTRY
 
 cache:
   paths:
@@ -45,9 +41,10 @@ docker:
     - name: docker:dind
       command: ["--tls=false", "--host=tcp://0.0.0.0:2375"]
   script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker build -t $CI_REGISTRY_IMAGE .
-    - docker push $CI_REGISTRY_IMAGE
+    - env
+    - docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD $REGISTRY
+    - docker build -t $DOCKER_IMAGE .
+    - docker push $DOCKER_IMAGE
   only:
     - develop
   tags:
