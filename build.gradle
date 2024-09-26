@@ -58,12 +58,26 @@ tasks.named('test') {
 }
 
 //get artifact version
+
 task writeVersion {
     doLast {
-        def versionFile = new File("${layout.buildDirectory}/version.txt")
+        def versionDir = new File("${layout.buildDirectory.get().asFile}/version")
+        if (!versionDir.exists()) {
+            versionDir.mkdirs() // Create directory if it doesn't exist
+        }
+
+        // Write the version to the file
+        def versionFile = new File(versionDir, "version.txt")
         versionFile.text = getVersion()
     }
 }
+
+// task writeVersion {
+//     doLast {
+//         def versionFile = new File("${layout.buildDirectory.get().asFile}/version.txt")
+//         versionFile.text = getVersion()
+//     }
+// }
 
 build.dependsOn writeVersion
 
