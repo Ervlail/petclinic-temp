@@ -57,6 +57,18 @@ tasks.named('test') {
   useJUnitPlatform()
 }
 
+//get artifact version
+task writeVersion {
+    doLast {
+        def versionFile = new File("$buildDir/version.txt")
+        versionFile.text = version
+    }
+}
+
+build.dependsOn writeVersion
+
+
+
 checkstyle {
   configDirectory = project.file('src/checkstyle')
   configFile = file('src/checkstyle/nohttp-checkstyle.xml')
