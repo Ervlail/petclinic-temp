@@ -74,7 +74,7 @@ task writeVersion {
 
 // task writeVersion {
 //     doLast {
-//         def versionFile = new File("${layout.buildDirectory.get().asFile}/version.txt")
+//         def versionFile = new File("${layout.buildDirectory}/version.txt")
 //         versionFile.text = getVersion()
 //     }
 // }
