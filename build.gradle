@@ -60,8 +60,8 @@ tasks.named('test') {
 //get artifact version
 task writeVersion {
     doLast {
-        def versionFile = new File("$buildDir/version.txt")
-        versionFile.text = version
+        def versionFile = new File("${layout.buildDirectory}/version.txt")
+        versionFile.text = getVersion()
     }
 }
 

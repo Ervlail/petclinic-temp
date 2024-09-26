@@ -2,9 +2,9 @@ FROM openjdk:17-jdk-slim
 
 WORKDIR /app
 
-ARG JAR_FILE
+ARG VERSION
 
-COPY build/libs/${JAR_FILE} spring-petclinic.jar
+COPY build/libs/spring-petclinic-${VERSION}.jar spring-petclinic.jar
 
 #COPY build/libs/spring-petclinic-*.jar spring-petclinic.jar
 

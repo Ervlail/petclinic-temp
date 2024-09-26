@@ -31,6 +31,7 @@ build:
   artifacts:
     paths:
       - build/libs/*.jar
+      - build/version.txt
   tags:
     - docker
 
@@ -42,9 +43,15 @@ docker:
       command: ["--tls=false", "--host=tcp://0.0.0.0:2375"]
   script:
     - env
+    - export ARTIFACT_VERSION=$(cat build/version.txt)
     - docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD $REGISTRY
-    - docker build -t $DOCKER_IMAGE .
-    - docker push $DOCKER_IMAGE
+    - docker build --build-arg VERSION=$ARTIFACT_VERSION -t $DOCKER_IMAGE:$ARTIFACT_VERSION .
+    - docker push $DOCKER_IMAGE:$ARTIFACT_VERSION
+    # - env
+    # - export ARTIFACT_VERSION=$(cat build/version.txt)
+    # - docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD $REGISTRY
+    # - docker build -t $DOCKER_IMAGE .
+    # - docker push $DOCKER_IMAGE
   only:
     - develop
   tags:
