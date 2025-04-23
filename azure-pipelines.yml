@@ -1,0 +1,27 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+
+steps:
+  - task: UseJava@1
+    inputs:
+      versionSpec: '17'
+      distribution: 'Temurin'
+
+  - task: Gradle@3
+    inputs:
+      gradleWrapperFile: 'gradlew'
+      tasks: 'clean build'
+      options: '--no-daemon'
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathToPublish: 'build/libs'
+      artifactName: 'petclinic-jar'
