@@ -6,7 +6,7 @@ trigger:
 pool:
   name: petclinic-agent-pool
   demands:
-    - agent.version -equals 4.x
+    - agent.version -equals 4.254.0
 #-gt 4.0.0
 
 variables:
