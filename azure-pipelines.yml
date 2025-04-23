@@ -4,7 +4,7 @@ trigger:
       - main
 
 pool:
-  vmImage: 'ubuntu-latest'
+  name: petclinic-agent-pool
 
 variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
