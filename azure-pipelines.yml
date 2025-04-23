@@ -5,10 +5,6 @@ trigger:
 
 pool:
   name: petclinic-agent-pool
-#  demands:
-#    - agent.version -gt 2.182.1
-#-equals 4.254.0
-#-gt 4.0.0
 
 variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
@@ -17,7 +13,7 @@ steps:
   - task: JavaToolInstaller@0
     inputs:
       versionSpec: '17'
-      jdkArchitecture: 'x64'
+      jdkArchitectureOption: 'x64'
       jdkSourceOption: 'PreInstalled'
 
   - script: |
