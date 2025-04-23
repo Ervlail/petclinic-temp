@@ -6,7 +6,8 @@ trigger:
 pool:
   name: petclinic-agent-pool
   demands:
-    - agent.version -gt 4.0.0
+    - agent.version -equals 4.x
+#-gt 4.0.0
 
 variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
