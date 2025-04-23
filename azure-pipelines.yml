@@ -3,7 +3,6 @@ trigger:
     include:
       - main
 
-
 pool:
   name: petclinic-agent-pool
 
