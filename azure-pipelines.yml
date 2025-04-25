@@ -27,7 +27,7 @@ steps:
     inputs:
       versionSpec: '17'
       jdkArchitectureOption: 'x64'
-      jdkSourceOption: 'PreInstalled'
+      jdkSourceOption: 'LocalDirectory'
     displayName: 'Use preinstalled Java'
 
     env:
