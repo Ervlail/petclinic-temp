@@ -30,9 +30,8 @@ steps:
       jdkSourceOption: 'PreInstalled'
     displayName: 'Use preinstalled Java'
 
-  - script: |
-      echo "##vso[task.setvariable variable=JAVA_HOME]/usr/lib/jvm/java-17-openjdk-amd64"
-    displayName: 'Set JAVA_HOME'
+    env:
+      JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
 #----------------------------------------------------------------------
   - task: Gradle@3
     inputs:
