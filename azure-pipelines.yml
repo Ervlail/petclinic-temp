@@ -10,29 +10,13 @@ variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
 
 steps:
-#   - task: JavaToolInstaller@0
-#     inputs:
-#       versionSpec: '17'
-#       jdkArchitectureOption: 'x64'
-#       jdkSourceOption: 'PreInstalled'
+  - script: |
+      export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+      export PATH=$JAVA_HOME/bin:$PATH
+      echo "JAVA_HOME is set to $JAVA_HOME"
+      java -version
+    displayName: 'Set and Verify Java Installation'
 
-
-#   - script: |
-#       echo "JAVA_HOME: $JAVA_HOME"
-#       java -version
-#     displayName: 'Verify Java Installation'
-
-#---------------------------------------------------------------------
-  - task: JavaToolInstaller@0
-    inputs:
-      versionSpec: '17'
-      jdkArchitectureOption: 'x64'
-      jdkSourceOption: 'LocalDirectory'
-    displayName: 'Use preinstalled Java'
-
-    env:
-      JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
-#----------------------------------------------------------------------
   - task: Gradle@3
     inputs:
       gradleWrapperFile: 'gradlew'
@@ -43,3 +27,53 @@ steps:
     inputs:
       pathToPublish: 'build/libs'
       artifactName: 'petclinic-jar'
+
+
+
+
+
+# trigger:
+#   branches:
+#     include:
+#       - main
+
+# pool:
+#   name: petclinic-agent-pool
+
+# variables:
+#   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+
+# steps:
+# #   - task: JavaToolInstaller@0
+# #     inputs:
+# #       versionSpec: '17'
+# #       jdkArchitectureOption: 'x64'
+# #       jdkSourceOption: 'PreInstalled'
+
+
+# #   - script: |
+# #       echo "JAVA_HOME: $JAVA_HOME"
+# #       java -version
+# #     displayName: 'Verify Java Installation'
+
+# #---------------------------------------------------------------------
+#   - task: JavaToolInstaller@0
+#     inputs:
+#       versionSpec: '17'
+#       jdkArchitectureOption: 'x64'
+#       jdkSourceOption: 'LocalDirectory'
+#     displayName: 'Use preinstalled Java'
+
+#     env:
+#       JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
+# #----------------------------------------------------------------------
+#   - task: Gradle@3
+#     inputs:
+#       gradleWrapperFile: 'gradlew'
+#       tasks: 'clean build'
+#       options: '--no-daemon'
+
+#   - task: PublishBuildArtifacts@1
+#     inputs:
+#       pathToPublish: 'build/libs'
+#       artifactName: 'petclinic-jar'
