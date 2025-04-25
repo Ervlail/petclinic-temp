@@ -14,8 +14,7 @@ steps:
     inputs:
       versionSpec: '17'
       jdkArchitectureOption: 'x64'
-#      jdkSourceOption: 'Local'
-#jdkSourceOption: 'PreInstalled'
+
 
   - script: |
       echo "JAVA_HOME: $JAVA_HOME"
